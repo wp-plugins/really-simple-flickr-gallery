@@ -6,13 +6,6 @@ Requires at least: 2.5.1
 Tested up to: 3.1.1
 Stable tag: 1.0
 
-    No == Installation == section was found
-    No == Frequently Asked Questions == section was found
-    No == Changelog == section was found
-    No == Upgrade Notice == section was found
-    No == Screenshots == section was found
-
-
 Show all your Flickr photos and photosets on your own page in a nice layout. Non-Flickr users can comment using their Facebook accounts or Wordpress.
 
 == Description ==
