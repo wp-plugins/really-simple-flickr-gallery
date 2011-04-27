@@ -18,7 +18,7 @@ Do help in developing this plugin by posting your suggestions or pointing out bu
 Cheers!
 
 == Installation ==
-
+It's simple to install. Just follow the following instructions:
  1. Upload the Plugins Folder to the Plugins folder of your WordPress installation.
  2. Activate the plugin through the ‘Plugins‘ menu in WordPress
  3. In the admin page, go to Settings -> Really Simple Flickr Gallery to enter your a few basic settings.
