@@ -120,6 +120,11 @@ function disp_photo_page() {
 		
 		$dttm=$sete['photo']['dates']['taken'];
 		$posted=$sete['photo']['dates']['posted'];
+		//Local Posting Time
+		$postedform=date("Y-m-d H:i:s",$posted);
+		$postgmtime=get_date_from_gmt($postedform);
+		$postedlocal=mysql2date("F j, Y, g:i a", $postgmtime, true);
+		
 		$lat=$sete['photo']['location']['latitude'];
 		$long=$sete['photo']['location']['longitude'];
 		if($sete['photo']['location']['neighbourhood']) $loc=$sete['photo']['location']['neighbourhood']['_content'];
@@ -129,7 +134,7 @@ function disp_photo_page() {
 		$stat=$sete['photo']['location']['region']['_content'];
 		$count=$sete['photo']['location']['country']['_content'];
 		$pagurl=$sete['photo']['urls']['url'][0]['_content'];
-		$upl=date("F j, Y, g:i a",$posted);
+		
 		$ret.="<tr><td colspan=3 valign=top><a href=\"$pagurl\" target=\"new-window\"><img src=\"$picurl\" width=\"$pagewidth"."px\"></a><br><hr><p> $newdes</p><br><hr>";
 		
 //FACEBOOK Comments
@@ -215,7 +220,7 @@ function disp_photo_page() {
 //************MAP ENDS
 			
 			
-		$ret.="<hr><b>Posted: </b>$upl<hr><b>Views:  </b>$views</td><td width=$nextwidth>";
+		$ret.="<hr><b>Posted: </b>$postedlocal<hr><b>Views:  </b>$views</td><td width=$nextwidth>";
 		if($previd) {
 			$ret.="<a href=\"$rooturl$previd/\">< Previous<br><img src=\"$prevthmb\"></a>";
 		}	
