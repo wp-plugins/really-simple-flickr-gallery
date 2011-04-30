@@ -3,7 +3,7 @@
 Plugin Name: Really Simple Flickr Gallery
 Plugin URI: http://www.sumitkumar.info/plugins/RSFG/
 Description: Display all your Flickr photos and photosets on your own site
-Version: 1.0.2
+Version: 1.0.3
 Author: Sumit Kumar
 Author URI: http://www.sumitkumar.info
 */
@@ -138,14 +138,25 @@ function disp_photo_page() {
 		$ret.="<tr><td colspan=3 valign=top><a href=\"$pagurl\" target=\"new-window\"><img src=\"$picurl\" width=\"$pagewidth"."px\"></a><br><hr><p> $newdes</p><br><hr>";
 		
 //FACEBOOK Comments
-	if(get_option("RSFG_fbappid")=="yes") {
+	$ret.="<table><tr><td>";
+	if(get_option("RSFG_fblike")=="yes") {
 	$ret.="
-	<table><tr><td>
+	
 	<script src=\"http://connect.facebook.net/en_US/all.js#xfbml=1\"></script><fb:like href=\"$pag\" show_faces=\"true\" width=\"450\" font=\"\"></fb:like>
-	<div id=\"fb-root\"></div><script src=\"http://connect.facebook.net/en_US/all.js#appId=000&amp;xfbml=1\"></script><fb:comments xid=\"$pid\" href=\"$pag\" num_posts=\"5\" width=\"500\"></fb:comments>
-	</td></tr></table>
-	";
+	<div id=\"fb-root\"></div>";
 	}
+	if(get_option("RSFG_fbcomm")=="yes") {
+	$ret.="
+	<script src=\"http://connect.facebook.net/en_US/all.js#appId=000&amp;xfbml=1\"></script><fb:comments xid=\"$pid\" href=\"$pag\" num_posts=\"5\" width=\"500\"></fb:comments>
+	</td><td>";
+	}
+	if(get_option("RSFG_fbpage")) {
+	$fbpage=get_option("RSFG_fbpage");
+	$ret.="
+	<script src=\"http://connect.facebook.net/en_US/all.js#xfbml=1\"></script><fb:like-box href=\"$fbpage\" width=\"292\" colorscheme=\"dark\" show_faces=\"true\" stream=\"false\" header=\"false\"></fb:like-box>";
+	}
+	$ret.="</td></tr></table>";
+	
 //FACEBOOK Ends
 		
 		$tme=sqltounixtime($dttm);
