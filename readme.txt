@@ -4,7 +4,7 @@ Donate link: http://sumitkumar.info/plugins/RSFG/
 Tags: Flickr, gallery, photos, RSFG, Simple Gallery
 Requires at least: 2.5.1
 Tested up to: 3.1.1
-Stable tag: trunk
+Stable tag: 1.0.3
 
 Show all your Flickr photos and photosets on your own page in a nice layout. Non-Flickr users can comment using their Facebook accounts or Wordpress.
 
