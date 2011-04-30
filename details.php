@@ -11,7 +11,7 @@ if(!$_POST) {
 	<form method="POST" action="<?php echo $url; ?>">
 	<tr><td width="20%">Your Flickr User ID</td>   
 	<td width="30%"><input type="text" name="userid" size="40" value="<?php echo get_option("RSFG_userid");?>"/></td>
-	<td>If you do no know your Flickr USER ID, <a href="http://idgettr.com/">Click Here</a> to get it. <br><b><i>Do Not enter any USER ID other than yours, that will be a violation of terms of service of Flickr API.</i></b></td></tr>
+	<td>If you do not know your Flickr USER ID, <a href="http://idgettr.com/">Click Here</a> to get it. <br><b><i>Do Not enter any USER ID other than yours, that will be a violation of terms of service of Flickr API.</i></b></td></tr>
 	<tr><td>Flickr API Key</td>   
 	<td><input type="text" name="apikey" size="50" value="<?php echo get_option("RSFG_apikey");?>" /></td>
 	<td rowspan=2>Get a Flickr API Key by <a href="http://www.flickr.com/services/apps/create/apply/">applying here</a>. It is really simple. Copy the Flickr API Key and the API Secret and paste them here </td></tr>
@@ -23,12 +23,22 @@ if(!$_POST) {
 	<tr><td>Page Width</td>   
 	<td><input type="text" name="pagewidth" size="50" value="<?php echo get_option("RSFG_pagewidth");?>"/></td>
 	<td>This is the pixel-width of the photo that will be displayed on your photo page. You can come back and change this if the photo shoots out of your central column, depending on your current Wordpress theme.</td></tr> 
-	<tr><td>Facebook Like Button and Comment Box</td>   
+	<td colspan=3>
+	<h1>Facebook Settings</h1>
+	<tr><td>Want to have a Facebook LIKE Button?</td>   
 	<td>
-<input type="radio" name="fbbox" value="yes" /> Yes<br />
-<input type="radio" name="fbbox" value="no" /> No</td>
-<td>Want to have Facebook "Like" Button and Comment Box?</td></tr>
-	 
+<input type="radio" name="fblike" value="yes" checked/> Yes<br />
+<input type="radio" name="fblike" value="no" /> No</td>
+<td>Want to have Facebook "Like" Button</td></tr>
+	<tr><td>Want to have Facebook Comment Box?</td>   
+	<td>
+<input type="radio" name="fbcomm" value="yes" checked/> Yes<br />
+<input type="radio" name="fbcomm" value="no" /> No</td>
+<td>Want to have a Facebook Comment Box?</td></tr>
+	<tr><td>Have a Facebook Page to Like?</td>   
+	<td><input type="text" name="fbpage" size="50" value="<?php echo get_option("RSFG_fbpage");?>"/></td>
+	<td>Enter the URL of your Facebook Page for which you want to place a Like box. Note that this is a Facebook Page and <b>NOT</b> a profile page.</td></tr>  
+	  
 	<td colspan=3>
 	<h1>Pages</h1>
 	<tr><td>Slideshow Page URL <br><b> Please end with "/"</b></td>  
@@ -50,7 +60,9 @@ $userid=$_POST['userid'];
 $apikey=$_POST['apikey'];
 $apisecret=$_POST['apisecret'];
 $pagewidth=$_POST['pagewidth'];
-$fbappid=$_POST['fbbox'];
+$fblike=$_POST['fblike'];
+$fbcomm=$_POST['fbcomm'];
+$fbpage=$_POST['fbpage'];
 $slidepageurl=$_POST['slidepageurl'];
 $allphotopageurl=$_POST['allphotopageurl'];
 
@@ -63,12 +75,16 @@ if(get_option("RSFG_apisecret")) update_option("RSFG_apisecret", $apisecret);
 else add_option("RSFG_apisecret", $apisecret,'','yes');
 if(get_option("RSFG_pagewidth")) update_option("RSFG_pagewidth", $pagewidth);
 else add_option("RSFG_pagewidth", $pagewidth,'','yes');
-if(get_option("RSFG_fbappid")!="yes" || get_option("RSFG_fbappid")!="no" ) update_option("RSFG_fbappid", $fbappid);
-else add_option("RSFG_fbappid", $fbappid,'','yes');
+if(get_option("RSFG_fblike")!="yes" || get_option("RSFG_fblike")!="no" ) update_option("RSFG_fblike", $fblike);
+if(get_option("RSFG_fbcomm")!="yes" || get_option("RSFG_fbcomm")!="no" ) update_option("RSFG_fbcomm", $fbcomm);
+if(get_option("RSFG_fbpage")) update_option("RSFG_fbpage", $fbpage);
+else add_option("RSFG_fbpage", $fbpage,'','yes');
+
 if(get_option("RSFG_allphotopageurl")) update_option("RSFG_allphotopageurl", $allphotopageurl);
 else add_option("RSFG_allphotopageurl", $allphotopageurl,'','yes');
 if(get_option("RSFG_slidepageurl")) update_option("RSFG_slidepageurl", $slidepageurl);
 else add_option("RSFG_slidepageurl", $slidepageurl,'','yes');
+
 
 echo "<h2>Thanks, your details have been entered.</h2>";
 }
