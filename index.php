@@ -3,7 +3,7 @@
 Plugin Name: Really Simple Flickr Gallery
 Plugin URI: http://www.sumitkumar.info/plugins/RSFG/
 Description: Display all your Flickr photos and photosets on your own site
-Version: 1.0.3
+Version: 1.0.4
 Author: Sumit Kumar
 Author URI: http://www.sumitkumar.info
 */
@@ -95,6 +95,7 @@ function disp_photo_page() {
 	else {
 	
 		$pagewidth=get_option("RSFG_pagewidth");
+		if(!$pagewidth) $pagewidth=800;
 		$picquery="http://www.flickr.com/services/rest/?method=flickr.photos.getInfo&photo_id=$pid&api_key=$apikey&secret=$apisecret&format=php_serial";
 		$response=fgcflick($picquery);
 		$sete = unserialize($response);
@@ -427,7 +428,7 @@ function photoroll($uid, $key,$rooturl){
 	$allphotopageurl=get_option("RSFG_allphotopageurl");
 	$pagewidth=get_option("RSFG_pagewidth");
 	$cnt=0;
-	$ret= "<table width=$pagewidth><tr>";
+	$ret= "<table><tr>";
 	$ret.= "<td colspan=\"8\"><h2>Recent Photos</h2></td></tr><tr>";
 	for ($i = 7; $i >-1 ; $i--){
 		//print_r($prow);
@@ -485,8 +486,10 @@ function dispset($setid,$apikey,$rooturl) {
 	$setquery="http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=$apikey&photoset_id=$setid&format=php_serial";
 	$sres=fgcflick($setquery);
 	$sets=unserialize($sres);
-	$colwidth=$pagewidth/8.2;
-	$thmbwidth=$colwidth*0.9;
+	if($pagewidth) {
+		$colwidth=$pagewidth/8.2;
+		$thmbwidth=$colwidth*0.9;
+	}
 	$num=$sets['photoset']['total'];
 	$m=1;
 	$sret.="<tr>";
@@ -496,8 +499,12 @@ function dispset($setid,$apikey,$rooturl) {
 		$id=$sets['photoset']['photo'][$u]['id'];
 		$secret=$sets['photoset']['photo'][$u]['secret'];
 		$picurl="http://farm$fid.static.flickr.com/$sid/$id"."_$secret"."_s.jpg";
-	
-		$sret.="<td width=$colwidth><a href=\"$rooturl$id/\"><img src=\"$picurl\" width=\"$thmbwidth\"></a></td>";
+		if($pagewidth) {
+			$sret.="<td width=$colwidth><a href=\"$rooturl$id/\"><img src=\"$picurl\" width=\"$thmbwidth\"></a></td>";
+		}
+		else {
+			$sret.="<td><a href=\"$rooturl$id/\"><img src=\"$picurl\"></a></td>";
+		}
 		if($m==8) {
 			$sret.="</tr><tr>";
 			$m=0;
