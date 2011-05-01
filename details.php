@@ -80,9 +80,9 @@ if(get_option("RSFG_fbcomm")!="yes" || get_option("RSFG_fbcomm")!="no" ) update_
 if(get_option("RSFG_fbpage")) update_option("RSFG_fbpage", $fbpage);
 else add_option("RSFG_fbpage", $fbpage,'','yes');
 
-if(get_option("RSFG_allphotopageurl")) update_option("RSFG_allphotopageurl", $allphotopageurl);
+if(get_option("RSFG_allphotopageurl") || get_option("RSFG_allphotopageurl")=="") update_option("RSFG_allphotopageurl", $allphotopageurl);
 else add_option("RSFG_allphotopageurl", $allphotopageurl,'','yes');
-if(get_option("RSFG_slidepageurl")) update_option("RSFG_slidepageurl", $slidepageurl);
+if(get_option("RSFG_slidepageurl") || get_option("RSFG_slidepageurl")=="") update_option("RSFG_slidepageurl", $slidepageurl);
 else add_option("RSFG_slidepageurl", $slidepageurl,'','yes');
 
 
