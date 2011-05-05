@@ -148,7 +148,7 @@ function disp_photo_page() {
 	}
 	if(get_option("RSFG_fbcomm")=="yes") {
 	$ret.="
-	<script src=\"http://connect.facebook.net/en_US/all.js#appId=000&amp;xfbml=1\"></script><fb:comments xid=\"$pid\" href=\"$pag\" num_posts=\"5\" width=\"500\"></fb:comments>
+	<script src=\"http://connect.facebook.net/en_US/all.js#appId=000&amp;xfbml=1\"></script><fb:comments xid=\"$pid\" href=\"$pag\" num_posts=\"5\" width=\"500\" colosrcheme=\"dark\"></fb:comments>
 	</td><td>";
 	}
 	if(get_option("RSFG_fbpage")) {
@@ -486,6 +486,7 @@ function dispset($setid,$apikey,$rooturl) {
 	$setquery="http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=$apikey&photoset_id=$setid&format=php_serial";
 	$sres=fgcflick($setquery);
 	$sets=unserialize($sres);
+	
 	if($pagewidth) {
 		$colwidth=$pagewidth/8.2;
 		$thmbwidth=$colwidth*0.9;
@@ -499,12 +500,14 @@ function dispset($setid,$apikey,$rooturl) {
 		$id=$sets['photoset']['photo'][$u]['id'];
 		$secret=$sets['photoset']['photo'][$u]['secret'];
 		$picurl="http://farm$fid.static.flickr.com/$sid/$id"."_$secret"."_s.jpg";
+		/*
 		if($pagewidth) {
 			$sret.="<td width=$colwidth><a href=\"$rooturl$id/\"><img src=\"$picurl\" width=\"$thmbwidth\"></a></td>";
 		}
 		else {
+		*/
 			$sret.="<td><a href=\"$rooturl$id/\"><img src=\"$picurl\"></a></td>";
-		}
+		//}
 		if($m==8) {
 			$sret.="</tr><tr>";
 			$m=0;
