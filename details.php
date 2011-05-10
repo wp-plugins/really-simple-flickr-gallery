@@ -46,7 +46,10 @@ if(!$_POST) {
 	<td>Enter the URL of the page on which you are displaying your Slideshow. Create a new page and just enter the text "<b>[RSFG_slideshow]</b>" into it. Save it and enter the URL here. Leave this field blank if you do not wish to have a "Slideshow Page"] </td></tr> 
 	<tr><td>All Photo Pages URL <br><b> Please end with "/"</b> </td>   
 	<td><input type="text" name="allphotopageurl"  size="60" value="<?php echo get_option("RSFG_allphotopageurl");?>"/></td>
-	<td>Enter the URL of the page on which you are displaying All Photos. Create a new page and just enter the text "<b>[RSFG_allphotos]</b>" into it. Save it and enter the URL here. Leave this field blank if you do not wish to have an "All Photos Page"] </td></tr> 
+	<td>Enter the URL of the page on which you are displaying All Photos. Create a new page and just enter the text "<b>[RSFG_allphotos]</b>" into it. Save it and enter the URL here. Leave this field blank if you do not wish to have an "All Photos Page"] </td>
+	<tr><td>Ads Code </td>   
+	<td><input type="text" name="adcode"  size="60" value="<?php echo get_option("RSFG_adcode");?>"/></td>
+	<td>Enter the code if you want to put an ad on the site </td></tr> 
 	
 	</table>
 	<input type="submit" class="button" value="Enter">
@@ -65,7 +68,7 @@ $fbcomm=$_POST['fbcomm'];
 $fbpage=$_POST['fbpage'];
 $slidepageurl=$_POST['slidepageurl'];
 $allphotopageurl=$_POST['allphotopageurl'];
-
+$adcode=$_POST['adcode'];
 
 if(get_option("RSFG_userid")) update_option("RSFG_userid", $userid);
 else add_option("RSFG_userid", $userid,'','yes');
@@ -84,6 +87,8 @@ if(get_option("RSFG_allphotopageurl") || get_option("RSFG_allphotopageurl")=="")
 else add_option("RSFG_allphotopageurl", $allphotopageurl,'','yes');
 if(get_option("RSFG_slidepageurl") || get_option("RSFG_slidepageurl")=="") update_option("RSFG_slidepageurl", $slidepageurl);
 else add_option("RSFG_slidepageurl", $slidepageurl,'','yes');
+if(get_option("RSFG_adcode") || get_option("RSFG_adcode")=="") update_option("RSFG_adcode", $adcode);
+else add_option("RSFG_adcode", $adcode,'','yes');
 
 
 echo "<h2>Thanks, your details have been entered.</h2>";
