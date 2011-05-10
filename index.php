@@ -3,7 +3,7 @@
 Plugin Name: Really Simple Flickr Gallery
 Plugin URI: http://www.sumitkumar.info/plugins/RSFG/
 Description: Display all your Flickr photos and photosets on your own site
-Version: 1.0.6.1
+Version: 1.0.6.2
 Author: Sumit Kumar
 Author URI: http://www.sumitkumar.info
 */
