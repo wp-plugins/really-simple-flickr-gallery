@@ -48,7 +48,7 @@ if(!$_POST) {
 	<td><input type="text" name="allphotopageurl"  size="60" value="<?php echo get_option("RSFG_allphotopageurl");?>"/></td>
 	<td>Enter the URL of the page on which you are displaying All Photos. Create a new page and just enter the text "<b>[RSFG_allphotos]</b>" into it. Save it and enter the URL here. Leave this field blank if you do not wish to have an "All Photos Page"] </td>
 	<tr><td>Ads Code </td>   
-	<td><input type="text" name="adcode"  size="60" value="<?php echo get_option("RSFG_adcode");?>"/></td>
+	<td><textarea name="adcode"  value="<?php echo get_option("RSFG_adcode");?>"/></textarea></td>
 	<td>Enter the code if you want to put an ad on the site </td></tr> 
 	
 	</table>
